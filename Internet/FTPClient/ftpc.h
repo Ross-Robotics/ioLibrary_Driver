@@ -31,15 +31,11 @@ extern "C" {
 #include "ff.h"
 #endif
 
-#ifndef	ftp_getc()
+// This is specific for RP2040, may need to be changed for other platforms.
+#define ftp_getc getchar
+#ifndef ftp_getc
 #define Need_UARTGetCharBlocking_func
-#else
-/* Change library
- * Change!! -> board_api.h,
- * Below is an example of a function of lpc_chip library. */
-#include "board_api.h"
 #endif
-
 
 #define LINELEN		100
 #ifndef F_FILESYSTEM
